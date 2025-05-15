@@ -9,8 +9,9 @@ public class OrderConfigrations : IEntityTypeConfiguration<Order>
         builder.Property(d => d.subtotal)
             .HasColumnType("decimal(8,2)");
         builder.HasMany(o => o.Items)
-            .WithOne();
-        builder.OwnsOne(x => x.Address, x => x.WithOwner());
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+        builder.OwnsOne(x => x.ShipToAddress, x => x.WithOwner());
 
     }
 }

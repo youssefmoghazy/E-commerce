@@ -24,7 +24,7 @@ namespace Persistance.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
-                table: "Address",
+                table: "ShipToAddress",
                 type: "nvarchar(450)",
                 nullable: false,
                 oldClrType: typeof(string),
@@ -32,13 +32,13 @@ namespace Persistance.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",
-                table: "Address",
+                table: "ShipToAddress",
                 column: "UserId",
                 unique: true);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Address_AspNetUsers_UserId",
-                table: "Address",
+                table: "ShipToAddress",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
@@ -50,11 +50,11 @@ namespace Persistance.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Address_AspNetUsers_UserId",
-                table: "Address");
+                table: "ShipToAddress");
 
             migrationBuilder.DropIndex(
                 name: "IX_Address_UserId",
-                table: "Address");
+                table: "ShipToAddress");
 
             migrationBuilder.AddColumn<int>(
                 name: "AddressId",
@@ -64,7 +64,7 @@ namespace Persistance.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserId",
-                table: "Address",
+                table: "ShipToAddress",
                 type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(string),
@@ -79,7 +79,7 @@ namespace Persistance.Migrations
                 name: "FK_AspNetUsers_Address_AddressId",
                 table: "AspNetUsers",
                 column: "AddressId",
-                principalTable: "Address",
+                principalTable: "ShipToAddress",
                 principalColumn: "Id");
         }
     }

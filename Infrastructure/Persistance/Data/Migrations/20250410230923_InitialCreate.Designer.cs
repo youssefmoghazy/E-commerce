@@ -39,7 +39,7 @@ namespace Persistance.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -70,7 +70,7 @@ namespace Persistance.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -87,7 +87,7 @@ namespace Persistance.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -98,7 +98,7 @@ namespace Persistance.Data.Migrations
 
             modelBuilder.Entity("Domain.Models.Product", b =>
                 {
-                    b.HasOne("Domain.Models.ProductBrand", "productBrand")
+                    b.HasOne("Domain.Models.ProductBrand", "ProductBrand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -112,7 +112,7 @@ namespace Persistance.Data.Migrations
 
                     b.Navigation("ProductType");
 
-                    b.Navigation("productBrand");
+                    b.Navigation("ProductBrand");
                 });
 #pragma warning restore 612, 618
         }

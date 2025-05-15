@@ -9,8 +9,8 @@ public class OrderService (IMapper mapper, IUnitOFWork unitOFWork,IBasketReposit
 {
     public async Task<OrderResponce> CreateAsync(OrderRequest request, string email)
     {
-        //Address
-        var address = mapper.Map<OrderAddress>(request.Address);
+        //ShipToAddress
+        var address = mapper.Map<OrderAddress>(request.shipToAddress);
         //Basket to get the items from
         var basket = await basketRepository.GetAsync(request.BasketId)??
             throw new BasketNotFoundExeption(request.BasketId);

@@ -12,7 +12,7 @@ namespace Persistance.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "ShipToAddress",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -96,7 +96,7 @@ namespace Persistance.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUsers_Address_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "ShipToAddress",
                         principalColumn: "Id");
                 });
 
@@ -170,7 +170,7 @@ namespace Persistance.Migrations
                 name: "IdentityRole");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "ShipToAddress");
         }
     }
 }

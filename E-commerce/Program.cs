@@ -20,6 +20,15 @@ namespace E_commerce
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddAplicationServices(builder.Configuration);
             builder.Services.AddWebApplicationServices(builder.Configuration);
@@ -47,6 +56,7 @@ namespace E_commerce
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseStaticFiles();
+            app.UseCors("AllowAll");
 
             app.MapControllers();
 

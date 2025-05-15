@@ -4,10 +4,11 @@ namespace Shared.SharedTransferObjects.Basket;
 
 public record BasketItemDTO
 {
-    public int Id { get; init; }
-    public string Name { get; init; } = default!;
-    public string ProductUrl { get; init; } = default!;
-    [Range(0,double.MaxValue)]
-    public decimal Price { get; init; }
-    public int Quantity { get; init; }
+    public int id { get; set; }
+    public string Productname { get; set; } = default!;
+    public string PictureUrl { get; set; } = default!;
+    public decimal Price { get; set; }
+    public int Quantity { get; set; }
+    public string Brand { get; set; } = default!;
+    public string Type { get; set; } = default!;
 }

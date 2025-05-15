@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation.Controllers;
 
-public class BasketController(IServicesManger servicesManger) : ApiController
+public class basketsController(IServicesManger servicesManger) : ApiController
 {
     // get Basket by id
     [HttpGet]

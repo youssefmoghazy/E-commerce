@@ -41,9 +41,9 @@ public class AuthenticationService(UserManager<ApplicationUser> userManager,
         var user = await userManager.Users.Include(u => u.Address)
             .FirstOrDefaultAsync(u => u.Email == Email)
             ?? throw new UserNotFoundExeption(Email);
-        if (user.Address is not null)
+        //if (user.Address is not null)
+        //throw new AddressNotFoundException(user.UserName!);
             return mapper.Map<AddressDTO>(user.Address);
-        throw new AddressNotFoundException(user.UserName!);
     }
     public async Task<AddressDTO> UpdateAddressAsync(AddressDTO addressDTO, string Email)
     {
@@ -71,7 +71,7 @@ public class AuthenticationService(UserManager<ApplicationUser> userManager,
     {
         var user = await userManager.FindByEmailAsync(Email)
             ?? throw new UserNotFoundExeption(Email);
-        return new(Email, user.UserName , await CreateJWTAsync(user));
+        return new(Email, user.DisplayName , await CreateJWTAsync(user));
     }
     private async Task<string> CreateJWTAsync (ApplicationUser user)
     {

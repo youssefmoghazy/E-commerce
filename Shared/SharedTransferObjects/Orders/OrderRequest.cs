@@ -2,4 +2,4 @@
 
 namespace Shared.SharedTransferObjects.Orders;
 
-public record OrderRequest(string BasketId, AddressDTO Address, int DelivaryMethodId);
+public record OrderRequest(string BasketId, AddressDTO shipToAddress, int DelivaryMethodId);

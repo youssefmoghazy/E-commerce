@@ -2,4 +2,4 @@
 
 namespace Shared.SharedTransferObjects.Authentication;
 
-public record RegisterRequest(string Email , string UserName , string Password , string DisplayName , string PhoneNumber);
+public record RegisterRequest(string Email , string DisplayName, string Password , string? UserName = "MMM", string? PhoneNumber = "");

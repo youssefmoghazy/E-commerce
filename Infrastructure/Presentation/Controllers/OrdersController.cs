@@ -7,7 +7,7 @@ namespace Presentation.Controllers;
 public class OrdersController(IServicesManger service)
     : ApiController
 {
-    /// Create (Address , basketId , DeliverMethodId )
+    /// Create (ShipToAddress , basketId , DeliverMethodId )
     [HttpPost]
     public async Task<ActionResult<OrderResponce>> CreateAsync (OrderRequest request)
     {

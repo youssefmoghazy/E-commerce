@@ -25,7 +25,7 @@ namespace Persistance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Models.Identity.Address", b =>
+            modelBuilder.Entity("Domain.Models.Identity.ShipToAddress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace Persistance.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("ShipToAddress", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Models.Identity.ApplicationUser", b =>
@@ -143,7 +143,7 @@ namespace Persistance.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -228,11 +228,11 @@ namespace Persistance.Migrations
                     b.ToTable("UserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Models.Identity.Address", b =>
+            modelBuilder.Entity("Domain.Models.Identity.ShipToAddress", b =>
                 {
                     b.HasOne("Domain.Models.Identity.ApplicationUser", "User")
-                        .WithOne("Address")
-                        .HasForeignKey("Domain.Models.Identity.Address", "UserId")
+                        .WithOne("ShipToAddress")
+                        .HasForeignKey("Domain.Models.Identity.ShipToAddress", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -256,7 +256,7 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Models.Identity.ApplicationUser", b =>
                 {
-                    b.Navigation("Address")
+                    b.Navigation("ShipToAddress")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

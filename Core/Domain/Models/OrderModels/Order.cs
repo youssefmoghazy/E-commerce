@@ -10,21 +10,21 @@ public class Order : BaseEntity<Guid>
         DeliveryMethod deliveryMethod, 
         decimal subtotal)
     {
-        Email = email;
+        BuyerEmail = email;
         Items = items;
-        Address = address;
+        ShipToAddress = address;
         DeliveryMethod = deliveryMethod;
         this.subtotal = subtotal;
     }
 
     //id
-    public string Email { get; set; } = default!;
-    public DateTimeOffset Date { get; set; } = DateTimeOffset.Now;
+    public string BuyerEmail { get; set; } = default!;
+    public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
     public IEnumerable<OrderItem> Items { get; set; } = [];
-    public OrderAddress Address { get; set; } = default!;
+    public OrderAddress ShipToAddress { get; set; } = default!;
     public DeliveryMethod DeliveryMethod { get; set; } = default!;
     public int DeliverymethodId { get; set; }
-    public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
+    public PaymentStatus Status { get; set; } = PaymentStatus.Pending;
     public string PaymentIntentId { get; set; } =string.Empty;
     public decimal subtotal { get; set; }
 }

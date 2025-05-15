@@ -25,7 +25,7 @@ namespace Services.Spicifications
         {
             addInclude(p => p.productBrand);
             addInclude(p => p.ProductType);
-            applySorting(parameters.Options);
+            applySorting(parameters.Sort);
             ApplyPagination(parameters.PageSize, parameters.PageIndex);
         }
 

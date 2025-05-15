@@ -6,7 +6,7 @@ public class productQuaryParameters
     private const int maxPageSize = 10;
     public int? BrandId { get; set; }
     public int? TypeId { get; set; }
-    public ProrductSortingOptions Options { get; set; }
+    public ProrductSortingOptions Sort { get; set; }
     public string? search {  get; set; }
     private int _PageSize { get; set; } = defaultPageSize;
     public int PageIndex { get; set; } = 1;

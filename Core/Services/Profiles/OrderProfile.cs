@@ -12,16 +12,16 @@ internal class OrderProfile : Profile
 
         CreateMap<OrderItem,OrderItemDTO>()
             .ForMember(d => d.ProductName, o => o.MapFrom(s => s.Product.Productname))
+            .ForMember(d => d.ProductId, o => o.MapFrom(s => s.Product.Productid))
             .ForMember(d => d.PictureUrl , o => o.MapFrom<OrderItemPictureUrlResolver>());
 
         CreateMap<Order, OrderResponce>()
-            .ForMember(d => d.DeliveryMethod,
-            o => o.MapFrom(s => s.DeliveryMethod.ShortName))
-            .ForMember(d => d.total,
-            o => o.MapFrom(s => s.DeliveryMethod.Price + s.subtotal))
-            .ForMember(d => d.UserEmail, opt => opt.MapFrom(s => s.Email));
+            .ForMember(d => d.DeliveryMethod, o => o.MapFrom(s => s.DeliveryMethod.ShortName))
+            .ForMember(d => d.Total, o => o.MapFrom(s => s.DeliveryMethod.Price + s.subtotal))
+            .ForMember(d => d.DeliveryCost, opt => opt.MapFrom(s => s.DeliveryMethod.Price));
 
-        CreateMap<DeliveryMethod, DeliverymethodResponce>();
+        CreateMap<DeliveryMethod, DeliverymethodResponce>()
+            .ForMember(d => d.Cost, o => o.MapFrom(s => s.Price));
     }
 }
 internal class OrderItemPictureUrlResolver(IConfiguration configuration)

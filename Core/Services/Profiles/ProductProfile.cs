@@ -10,8 +10,8 @@ public class ProductProfile : Profile
     public ProductProfile()
     {
         CreateMap<Product, ProductResponce>()
-            .ForMember(p => p.BrandName, options => options.MapFrom(s => s.productBrand.Name))
-            .ForMember(p => p.TypeName, options => options.MapFrom(s => s.ProductType.Name))
+            .ForMember(p => p.ProductBrand, options => options.MapFrom(s => s.productBrand.Name))
+            .ForMember(p => p.ProductType, options => options.MapFrom(s => s.ProductType.Name))
             .ForMember(p => p.PictureUrl, options => options.MapFrom<PictureUrlRoslver>());
         CreateMap<ProductBrand, BrandResponce>();
         CreateMap<ProductType,TypeResponce>();

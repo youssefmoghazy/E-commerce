@@ -25,7 +25,7 @@ namespace Persistance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Models.Identity.Address", b =>
+            modelBuilder.Entity("Domain.Models.Identity.ShipToAddress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address", (string)null);
+                    b.ToTable("ShipToAddress", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Models.Identity.ApplicationUser", b =>
@@ -145,7 +145,7 @@ namespace Persistance.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -232,11 +232,11 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Models.Identity.ApplicationUser", b =>
                 {
-                    b.HasOne("Domain.Models.Identity.Address", "Address")
+                    b.HasOne("Domain.Models.Identity.ShipToAddress", "ShipToAddress")
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.Navigation("Address");
+                    b.Navigation("ShipToAddress");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>

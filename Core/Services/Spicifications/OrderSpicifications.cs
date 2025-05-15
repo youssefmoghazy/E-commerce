@@ -12,7 +12,7 @@ internal class OrderSpicifications
         addInclude(x => x.Items);
     }
     public OrderSpicifications(string email)
-        : base(order => order.Email == email)
+        : base(order => order.BuyerEmail == email)
     {
         addInclude(x => x.DeliveryMethod);
         addInclude(x => x.Items);

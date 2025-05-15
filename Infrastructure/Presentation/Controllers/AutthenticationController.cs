@@ -23,7 +23,7 @@ public class AuthenticationController(IServicesManger servicesManger) : ApiContr
     public async Task<ActionResult<UserResponce>> Register(RegisterRequest request)
         => Ok(await servicesManger.AuthenticationService.RegisterAsync(request));
     //TODO
-    [HttpGet("checkEmail")]
+    [HttpGet("emailexists")]
     public async Task<ActionResult<bool>> CheckEmailAsync (string  email)
             => Ok(await servicesManger.AuthenticationService.CkeckEmailAsync(email));
 
@@ -31,7 +31,7 @@ public class AuthenticationController(IServicesManger servicesManger) : ApiContr
     // [HttpGet]
     // GetCurrentUserAddress() => return AddressDTO
     [Authorize]
-    [HttpGet("Address")]
+    [HttpGet("address")]
     public async Task<ActionResult<bool>> GetAddress ()
     {
         var email = User.FindFirstValue(ClaimTypes.Email);
@@ -41,7 +41,7 @@ public class AuthenticationController(IServicesManger servicesManger) : ApiContr
     // [httpPost]
     // UpdateCurrentUserAddress() => return AddressDTO
     [Authorize]
-    [HttpPut("Address")]
+    [HttpPut("address")]
     public async Task<ActionResult<AddressDTO>> updateAddress (AddressDTO addressDTO)
     {
         var email = User.FindFirstValue(ClaimTypes.Email);

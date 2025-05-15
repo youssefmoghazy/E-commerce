@@ -59,7 +59,7 @@ namespace Persistance.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("Date")
+                    b.Property<DateTimeOffset>("OrderDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<int>("DeliverymethodId")
@@ -73,10 +73,10 @@ namespace Persistance.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("PaymentStatus")
+                    b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
-                    b.Property<decimal>("subtotal")
+                    b.Property<decimal>("Subtotal")
                         .HasColumnType("decimal(8,2)");
 
                     b.HasKey("Id");
@@ -123,7 +123,7 @@ namespace Persistance.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -154,7 +154,7 @@ namespace Persistance.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -171,7 +171,7 @@ namespace Persistance.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -188,7 +188,7 @@ namespace Persistance.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Domain.Models.OrderModels.OrderAddress", "Address", b1 =>
+                    b.OwnsOne("Domain.Models.OrderModels.OrderAddress", "ShipToAddress", b1 =>
                         {
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uniqueidentifier");
@@ -221,7 +221,7 @@ namespace Persistance.Data.Migrations
                                 .HasForeignKey("OrderId");
                         });
 
-                    b.Navigation("Address")
+                    b.Navigation("ShipToAddress")
                         .IsRequired();
 
                     b.Navigation("DeliveryMethod");
@@ -263,7 +263,7 @@ namespace Persistance.Data.Migrations
 
             modelBuilder.Entity("Domain.Models.Product.Product", b =>
                 {
-                    b.HasOne("Domain.Models.Product.ProductBrand", "productBrand")
+                    b.HasOne("Domain.Models.Product.ProductBrand", "ProductBrand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -277,7 +277,7 @@ namespace Persistance.Data.Migrations
 
                     b.Navigation("ProductType");
 
-                    b.Navigation("productBrand");
+                    b.Navigation("ProductBrand");
                 });
 
             modelBuilder.Entity("Domain.Models.OrderModels.Order", b =>

@@ -8,5 +8,5 @@ public record DeliverymethodResponce
     public string ShortName { get; set; } = default!;
     public string Description { get; set; } = default!;
     public String DeliveryTime { get; set; } = default!;
-    public decimal price { get; set; }
+    public decimal Cost { get; set; }
 }
