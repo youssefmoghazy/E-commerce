@@ -7,14 +7,15 @@ public class Order : BaseEntity<Guid>
         
     }
     public Order(string email, IEnumerable<OrderItem> items, OrderAddress address,
-        DeliveryMethod deliveryMethod, 
-        decimal subtotal)
+        DeliveryMethod deliveryMethod,
+        decimal subtotal, string paymentIntentId)
     {
         BuyerEmail = email;
         Items = items;
         ShipToAddress = address;
         DeliveryMethod = deliveryMethod;
         this.subtotal = subtotal;
+        PaymentIntentId = paymentIntentId;
     }
 
     //id
@@ -25,6 +26,6 @@ public class Order : BaseEntity<Guid>
     public DeliveryMethod DeliveryMethod { get; set; } = default!;
     public int DeliverymethodId { get; set; }
     public PaymentStatus Status { get; set; } = PaymentStatus.Pending;
-    public string PaymentIntentId { get; set; } =string.Empty;
+    public string PaymentIntentId { get; set; } = default!;
     public decimal subtotal { get; set; }
 }

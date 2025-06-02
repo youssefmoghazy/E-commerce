@@ -7,5 +7,6 @@ public interface IServicesManger
     IAuthenticationService AuthenticationService { get;}
     IOrderService OrderService { get;}
     ICacheService cacheService { get;}
+    IPaymentService paymentService { get;}
 
 }

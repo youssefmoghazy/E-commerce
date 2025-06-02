@@ -21,6 +21,7 @@ public static class ApplicationServicesRegistration
         services.AddScoped<IBasketServices, BasketService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<ICacheService, CacheService>();
+        services.AddScoped<IPaymentService,PaymentService>();
 
         services.AddScoped<Func<IProductService>>(provider => ()
             => provider.GetRequiredService<IProductService>());
@@ -32,6 +33,8 @@ public static class ApplicationServicesRegistration
             => provider.GetRequiredService<IOrderService>());
         services.AddScoped<Func<ICacheService>>(provider => ()
            => provider.GetRequiredService<ICacheService>());
+        services.AddScoped<Func<IPaymentService>>(provider => ()
+        => provider.GetRequiredService<IPaymentService>());
 
         services.Configure<JWTOptions>(configuration.GetSection("JWTOptions"));
         return services;

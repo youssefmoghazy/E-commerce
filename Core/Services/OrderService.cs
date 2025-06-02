@@ -15,6 +15,15 @@ public class OrderService (IMapper mapper, IUnitOFWork unitOFWork,IBasketReposit
         var basket = await basketRepository.GetAsync(request.BasketId)??
             throw new BasketNotFoundExeption(request.BasketId);
 
+        ArgumentNullException.ThrowIfNull(basket.PaymentIntentId);
+
+
+        var orderRepo = unitOFWork.GetReposistory<Order, Guid>();
+
+        var existingOrder = await orderRepo.GetAsynce(new OrderWithPaymentIntentSpecification(basket.PaymentIntentId));
+
+        if (existingOrder != null)
+            orderRepo.Delete(existingOrder);
         List<OrderItem> items = [];
         var ProductRepo = unitOFWork.GetReposistory<Product>();
         foreach(var item in basket.BasketItems)
@@ -27,12 +36,12 @@ public class OrderService (IMapper mapper, IUnitOFWork unitOFWork,IBasketReposit
         }
         // Delivery Method
         var method = await unitOFWork.GetReposistory<DeliveryMethod>()
-            .GetAsynce(request.DelivaryMethodId)??
-            throw new DeliveryMethodNotfoundException(request.DelivaryMethodId);
+            .GetAsynce(request.DeliveryMethodId)??
+            throw new DeliveryMethodNotfoundException(request.DeliveryMethodId);
 
         var subtotal = items.Sum(x => x.Price * x.Quantity);
-        var order = new Order(email, items,address, method ,subtotal);
-        unitOFWork.GetReposistory<Order,Guid>().Add(order);
+        var order = new Order(email, items,address, method ,subtotal,basket.PaymentIntentId);
+        orderRepo.Add(order);
 
         await unitOFWork.SaveChangesAsynce();
         
